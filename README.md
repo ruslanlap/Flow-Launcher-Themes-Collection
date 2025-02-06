@@ -1,11 +1,5 @@
 # Flow Launcher Themes Collection
 
-This repository aggregates theme submissions shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438). Click the links below for download instructions, repo details, or to view the theme’s source.
-
----
-
-# Flow Launcher Themes Collection
-
 This README aggregates theme submissions (XAML files) shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438). Use the table below to quickly access each theme’s XAML file.
 
 | Theme                | XAML File(s)                                                                                                                                                                                                                                                                                       | Download Link                                                                                                                                                                                         | Author             |
