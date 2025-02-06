@@ -32,6 +32,8 @@ This README aggregates theme submissions (XAML files) shared in the [Flow Launch
 **TrueDracula Theme**         | TrueDracula.xaml                                                                                                       | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/blob/master/TrueDracula.xaml)                                                                                                                      | ruslanlap          |
 
 
+
+
 ---
 
 *For updated links or further instructions on installation, please refer to the original [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).*
