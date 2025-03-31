@@ -27,10 +27,7 @@ jobs:
       - name: 📥 Install Dependencies
         run: pip install requests
 
-      - name: 📡 Run Theme Sync Script
-        run: python update_themes.py
-
-      - name: 💾 Commit & Push Changes
+      - name: 📡 Run Theme Sync Script and Commit Changes
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Ваш персональний токен
         run: |
@@ -40,7 +37,9 @@ jobs:
           
           # Авторизація через PAT
           git remote set-url origin https://ruslanlap:${PAT_TOKEN}@github.com/${{ github.repository }}.git
-
+          
+          # Запуск скрипту оновлення
+          python update_themes.py
           
           # Синхронізація зміни
           git pull --rebase origin main
