@@ -18,6 +18,7 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}  # 🔐 Використовуємо PAT
           fetch-depth: 0
+          persist-credentials: true
 
       - name: 🐍 Set Up Python
         uses: actions/setup-python@v4
@@ -32,23 +33,21 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Ваш персональний токен
         run: |
           # Налаштування Git
-          git config --global user.name "Theme Sync Bot 🤖"
-          git config --global user.email "themes-bot@flowlauncher.dev"
+          git config --local user.name "Theme Sync Bot 🤖"
+          git config --local user.email "themes-bot@flowlauncher.dev"
           
           # Авторизація через PAT
-          git remote set-url origin https://ruslanlap:${PAT_TOKEN}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git
           
           # Запуск скрипту оновлення
           python update_themes.py
           
-          # Синхронізація зміни
-          git pull --rebase origin main
-          
-          # Комміт та пуш
-          git add README.md
-          if ! git diff-index --quiet HEAD; then
+          # Перевірка змін
+          if git diff --name-only | grep -q "README.md"; then
+            # Комміт та пуш
+            git add README.md
             git commit -m "🧵 Auto-update README with new themes ✨"
-            git push origin HEAD:main
+            git push origin HEAD:${GITHUB_REF#refs/heads/}
           else
             echo "➰ No changes to commit"
           fi

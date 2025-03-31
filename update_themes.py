@@ -2,9 +2,9 @@ import os
 import requests
 
 # Отримання GitHub токену з змінних середовища
-GITHUB_TOKEN = os.environ.get('GITHUB_TOKEN')
+GITHUB_TOKEN = os.environ.get('PAT_TOKEN')
 if not GITHUB_TOKEN:
-    raise Exception("GITHUB_TOKEN не встановлено. Додайте його як змінну середовища.")
+    raise Exception("PAT_TOKEN не встановлено. Додайте його як змінну середовища.")
 
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 
