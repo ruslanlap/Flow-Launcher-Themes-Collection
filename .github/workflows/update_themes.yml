@@ -16,8 +16,7 @@ jobs:
       - name: 📦 Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PAT_TOKEN }}
-          persist-credentials: false
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: 🐍 Set Up Python
@@ -34,11 +33,30 @@ jobs:
         run: python update_themes.py
 
       - name: 💾 Commit & Push if README changed
-        uses: EndBug/add-and-commit@v9
+        uses: actions/github-script@v6
         with:
-          author_name: Theme Sync Bot 🤖
-          author_email: themes-bot@flowlauncher.dev
-          message: 🧵 Auto-update README with new themes ✨
-          add: 'README.md'
-          push: true
-          github_token: ${{ secrets.PAT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { execSync } = require('child_process');
+            
+            // Check if README.md has changes
+            const status = execSync('git status --porcelain README.md').toString().trim();
+            
+            if (status) {
+              console.log('Changes detected in README.md, committing...');
+              
+              // Configure git
+              execSync('git config user.name "Theme Sync Bot 🤖"');
+              execSync('git config user.email "themes-bot@flowlauncher.dev"');
+              
+              // Commit changes
+              execSync('git add README.md');
+              execSync('git commit -m "🧵 Auto-update README with new themes ✨"');
+              
+              // Push changes using the GITHUB_TOKEN
+              execSync('git push');
+              
+              console.log('Changes committed and pushed successfully!');
+            } else {
+              console.log('No changes to README.md, skipping commit.');
+            }
