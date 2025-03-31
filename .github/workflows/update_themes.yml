@@ -1,18 +1,17 @@
 name: Update Themes
 
-permissions:
-  contents: write  # Дозволяє GitHub Actions пушити зміни
-
 on:
   schedule:
-    - cron: '0 0 * * 0'  # Скрипт буде запускатись щонеділі о 00:00 UTC
+    - cron: '0 0 * * 0'  # Щонеділі о 00:00 UTC
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,16 +23,16 @@ jobs:
 
       - name: Run update script
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # ← використовує ваш персональний токен
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: python update_themes.py
 
-      - name: Commit changes
+      - name: Commit and push changes
         env:
           TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           git add README.md
           git commit -m "Автоматичне оновлення README.md з новими темами" || echo "No changes to commit"
-          git push
+          git push origin HEAD
