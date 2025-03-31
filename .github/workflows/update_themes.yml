@@ -10,39 +10,45 @@ jobs:
     name: 🔄 Fetch & Update Themes
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 🔑 Необхідно для пуша змін
+      contents: write  # 🔑 Необхідні права
 
     steps:
       - name: 📦 Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 📚 Отримати повну історію комітів
+          token: ${{ secrets.PAT_TOKEN }}  # 🔐 Використовуємо PAT
+          fetch-depth: 0
 
       - name: 🐍 Set Up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'  # 🎯 Конкретна версія Python
+          python-version: '3.10'
 
       - name: 📥 Install Dependencies
         run: pip install requests
 
       - name: 📡 Run Theme Sync Script
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 🔒 Використовуємо вбудований токен
         run: python update_themes.py
 
       - name: 💾 Commit & Push Changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Ваш персональний токен
         run: |
+          # Налаштування Git
           git config --global user.name "Theme Sync Bot 🤖"
-          git config --global user.email "actions@github.com"
+          git config --global user.email "themes-bot@flowlauncher.dev"
           
-          # 🔄 Синхронізація з upstream
+          # Авторизація через PAT
+          git remote set-url origin https://${{ github.actor }}:$PAT_TOKEN@github.com/${{ github.repository }}
+          
+          # Синхронізація зміни
           git pull --rebase origin main
           
+          # Комміт та пуш
           git add README.md
-          git diff-index --quiet HEAD || {
+          if ! git diff-index --quiet HEAD; then
             git commit -m "🧵 Auto-update README with new themes ✨"
             git push origin HEAD:main
-          }
+          else
+            echo "➰ No changes to commit"
+          fi
