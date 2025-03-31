@@ -34,13 +34,12 @@ jobs:
         run: python update_themes.py
 
       - name: 💾 Commit & Push if README changed
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: 🧵 Auto-update README with new themes ✨
-          file_pattern: 'README.md'
-          commit_user_name: Theme Sync Bot 🤖
-          commit_user_email: themes-bot@flowlauncher.dev
-          commit_author: Theme Sync Bot 🤖 <themes-bot@flowlauncher.dev>
-          push_options: '--force'
-          skip_dirty_check: false
-          token: ${{ secrets.PAT_TOKEN }}
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          git config --local user.email "themes-bot@flowlauncher.dev"
+          git config --local user.name "Theme Sync Bot 🤖"
+          git remote set-url origin https://ruslanlap:${{ secrets.PAT_TOKEN }}@github.com/ruslanlap/Flow-Launcher-Themes-Collection.git
+          git add README.md
+          git commit -m "Автоматичне оновлення README.md з новими темами" || echo "No changes to commit"
+          git push
