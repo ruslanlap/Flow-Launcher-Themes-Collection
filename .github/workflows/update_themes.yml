@@ -39,7 +39,8 @@ jobs:
           git config --global user.email "themes-bot@flowlauncher.dev"
           
           # Авторизація через PAT
-          git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://ruslanlap:${PAT_TOKEN}@github.com/${{ github.repository }}.git
+
           
           # Синхронізація зміни
           git pull --rebase origin main
