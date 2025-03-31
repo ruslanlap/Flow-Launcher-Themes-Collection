@@ -33,13 +33,13 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Ваш персональний токен
         run: python update_themes.py
 
-      - name: 💾 Commit & Push if README changed
+        - name: 💾 Commit & Push if README changed
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           git config --local user.email "themes-bot@flowlauncher.dev"
           git config --local user.name "Theme Sync Bot 🤖"
-          git remote set-url origin https://ruslanlap:${{ secrets.PAT_TOKEN }}@github.com/ruslanlap/Flow-Launcher-Themes-Collection.git
           git add README.md
           git commit -m "Автоматичне оновлення README.md з новими темами" || echo "No changes to commit"
+          git remote set-url origin "https://ruslanlap:${{ secrets.PAT_TOKEN }}@github.com/ruslanlap/Flow-Launcher-Themes-Collection.git"
           git push
