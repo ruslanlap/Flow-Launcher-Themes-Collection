@@ -14,10 +14,12 @@ jobs:
 
     steps:
       - name: 📦 Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT_TOKEN }}  # 🔐 Використовуємо PAT
-          fetch-depth: 0
+  uses: actions/checkout@v4
+  with:
+    token: ${{ secrets.PAT_TOKEN }}
+    persist-credentials: false
+    fetch-depth: 0
+
 
       - name: 🐍 Set Up Python
         uses: actions/setup-python@v4
