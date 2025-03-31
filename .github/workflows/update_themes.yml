@@ -1,38 +1,39 @@
-name: Update Themes
+name: 🧠 Weekly Flow Launcher Theme Sync
 
 on:
   schedule:
-    - cron: '0 0 * * 0'  # Щонеділі о 00:00 UTC
-  workflow_dispatch:
+    - cron: '0 0 * * 0'  # ⏰ Every Sunday at 00:00 UTC
+  workflow_dispatch:     # 🖐 Allows manual triggering
 
 jobs:
   update:
+    name: 🔄 Fetch & Update Themes
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 📦 Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: 🐍 Set Up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: 📥 Install Dependencies
         run: pip install requests
 
-      - name: Run update script
+      - name: 📡 Run Theme Sync Script
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: python update_themes.py
 
-      - name: Commit and push changes
+      - name: 💾 Commit & Push README Changes
         env:
           TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
+          git config --global user.name "Theme Sync Bot 🤖"
+          git config --global user.email "themes-bot@flowlauncher.dev"
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           git add README.md
-          git commit -m "Автоматичне оновлення README.md з новими темами" || echo "No changes to commit"
+          git commit -m "🧵 Auto-update README with new themes ✨" || echo "No changes to commit"
           git push origin HEAD
