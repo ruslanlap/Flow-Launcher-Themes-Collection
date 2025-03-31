@@ -16,7 +16,6 @@ jobs:
       - name: 📦 Checkout Repository
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: 🐍 Set Up Python
@@ -32,31 +31,20 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Ваш персональний токен
         run: python update_themes.py
 
-      - name: 💾 Commit & Push if README changed
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { execSync } = require('child_process');
-            
-            // Check if README.md has changes
-            const status = execSync('git status --porcelain README.md').toString().trim();
-            
-            if (status) {
-              console.log('Changes detected in README.md, committing...');
-              
-              // Configure git
-              execSync('git config user.name "Theme Sync Bot 🤖"');
-              execSync('git config user.email "themes-bot@flowlauncher.dev"');
-              
-              // Commit changes
-              execSync('git add README.md');
-              execSync('git commit -m "🧵 Auto-update README with new themes ✨"');
-              
-              // Push changes using the GITHUB_TOKEN
-              execSync('git push');
-              
-              console.log('Changes committed and pushed successfully!');
-            } else {
-              console.log('No changes to README.md, skipping commit.');
-            }
+      - name: 💾 Check for README changes
+        id: check_changes
+        run: |
+          if git diff --name-only | grep -q "README.md"; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🔄 Commit & Push Changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --global user.name 'Theme Sync Bot 🤖'
+          git config --global user.email 'themes-bot@flowlauncher.dev'
+          git add README.md
+          git commit -m "🧵 Auto-update README with new themes ✨"
+          git push
