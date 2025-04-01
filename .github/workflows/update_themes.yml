@@ -46,11 +46,22 @@ jobs:
           git config --global user.name 'Theme Sync Bot 🤖'
           git config --global user.email 'themes-bot@flowlauncher.dev'
           
-          # Pull latest changes with rebase strategy to avoid merge commits
-          git pull --rebase origin master
-          
+          # Stage README changes first
           git add README.md
           git commit -m "🧵 Auto-update README with new themes ✨"
           
-          # Force push with lease for safety
-          git push --force-with-lease
+          # Create a temporary branch for our changes
+          git branch temp-changes
+          
+          # Switch to master and pull latest changes
+          git checkout master
+          git pull origin master
+          
+          # Apply our changes on top of the latest master
+          git checkout temp-changes
+          git rebase master
+          
+          # Push the changes back to master
+          git checkout master
+          git merge --ff-only temp-changes
+          git push origin master
