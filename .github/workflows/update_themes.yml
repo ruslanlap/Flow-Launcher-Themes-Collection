@@ -45,6 +45,12 @@ jobs:
         run: |
           git config --global user.name 'Theme Sync Bot 🤖'
           git config --global user.email 'themes-bot@flowlauncher.dev'
+          
+          # Pull latest changes with rebase strategy to avoid merge commits
+          git pull --rebase origin master
+          
           git add README.md
           git commit -m "🧵 Auto-update README with new themes ✨"
-          git push
+          
+          # Force push with lease for safety
+          git push --force-with-lease
