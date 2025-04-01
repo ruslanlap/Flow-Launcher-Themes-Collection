@@ -13,7 +13,6 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | **Circle OLED Black** | Circle OLED Black.xaml *(assumed)* | | TheOddball | ✓ |
 | **Click here to go to repo** | Click here to go to repo.xaml *(assumed)* | [Download](https://github.com/drunkzurg/FlowLauncherUI) | drunkzurg | ✓ |
 | **Download from Here!** | Download from Here!.xaml *(assumed)* | [Download](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438?sort=new#discussioncomment-10400585) | Miensoap | ✓ |
-| **Dracula True Theme** | Dracula True Theme.xaml *(assumed)* | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✓ |
 | **Flow Launcher Ayu dark theme** | Flow Launcher Ayu dark theme.xaml *(assumed)* | [Download](https://github.com/dempfi/ayu) | icebruce | ✓ |
 | **Hacker_Theme** | Hacker_Theme.xaml *(assumed)* | [Download](https://github.com/ImNotVarun/Hacker_Theme) | ImNotVarun | ✓ |
 | **Hello everyone, We've created a version with improved transparent window implementation. If you're an interested user or an existing theme designer, please download the portable version from the link below, try it out, and share your feedback.** | Hello everyone, We've created a version with improved transparent window implementation. If you're an interested user or an existing theme designer, please download the portable version from the link below, try it out, and share your feedback..xaml *(assumed)* | | onesounds |  |
@@ -32,7 +31,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | **SlimDarkBlur** | SlimDarkBlur.xaml SlimDarkBlurDeep.xaml SlimDarkBlurAccent.xaml | [Download](https://github.com/WhoSowSee/SlimDarkBlur.flow) | WhoSowSee | ✓ |
 | **Tokyo Night & Tokyo Night Storm** | Tokyo Night & Tokyo Night Storm.xaml *(assumed)* | [Download](https://github.com/SoraTenshi/FlowLauncher-TokyoNight) | SoraTenshi | ✓ |
 | **☁️Fluent Blur** | ☁️Fluent Blur.xaml *(assumed)* | [Download](https://github.com/Flow-Launcher/Flow.Launcher/issues/2387) | Arcticn | ✓ |
-| **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | ✨ How to Submit Your Theme to the Flow Launcher Theme Collection.xaml *(assumed)* | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✓ |
+| **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | onsetGlaze.xaml | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✓ |
 | **🌌 Palenight Theme 🌌** | 🌌 Palenight Theme 🌌.xaml *(assumed)* | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✓ |
 | **🎨 Alfred Blue** | 🎨 Alfred Blue.xaml *(assumed)* | [Download](https://github.com/Qulierm/AlfredBlue/blob/main/Flow.Launcher%2019.05.2024%2011_53_21.png?raw=true) | Qulierm | ✓ |
 | **🎨 CircleDarkBlur Theme** | CircleDarkBlur.xaml | [Download](https://github.com/z1nc0r3/CircleDarkBlur.Flow-Launcher) | z1nc0r3 | ✓ |
@@ -43,6 +42,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | **🎨 TrueWin11Dark** | 🎨 TrueWin11Dark.xaml *(assumed)* | [Download](https://github.com/z1nc0r3/CircleDarkBlur.Flow-Launcher) | okRoni | ✓ |
 | **🎨 Violet** | 🎨 Violet.xaml *(assumed)* | [Download](https://github.com/eliaszon/Violet.flow) | eliaszon | ✓ |
 | **🎨Bullet_Acrylic** | 🎨Bullet_Acrylic.xaml *(assumed)* | [Download](https://github.com/KJH-x/FlowTheme) | KJH-x | ✓ |
+| **🎨Dracula True Theme** | DraculaTrue.xaml DraculaTrue.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/raw/main/DraculaTrue.xaml) | ruslanlap | ✓ |
 
 ---
 
