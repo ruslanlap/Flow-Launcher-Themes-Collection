@@ -107,18 +107,17 @@ def update_readme_table(themes):
     
     # Create a new README structure
     content = [
-        "# Flow Launcher Themes Collection\n",
+        "# 🎨 Flow Launcher Themes Collection\n",
         "\n",
         "This README aggregates theme submissions shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).\n",
         "\n",
-        "| Theme | XAML File(s) | Download Link | Author | Preview |\n",
-        "|-------|--------------|---------------|--------|--------|\n"
+        "| 🎨 Theme | 🗂 XAML File(s) | 📥 Download | ✍️ Author | 🖼️ Preview |\n",
+        "|----------|------------------|--------------|------------|-----------|\n"
     ]
     
     # Add theme entries to table
     for theme in themes:
-        preview_status = "✓" if theme['has_image'] else ""
-        # Clean up theme name to avoid markdown issues
+        preview_status = "✅" if theme['has_image'] else ""
         safe_name = theme['name'].replace('|', '\\|')
         safe_xaml = theme['xaml_files'].replace('|', '\\|')
         
@@ -139,6 +138,7 @@ def update_readme_table(themes):
     
     print(f"README.md updated with {len(themes)} themes in table format.")
     return True
+
 
 if __name__ == "__main__":
     comments = fetch_discussion_comments()
