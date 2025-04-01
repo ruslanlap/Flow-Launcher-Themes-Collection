@@ -48,6 +48,14 @@ def extract_theme_info(comments):
         body_html = comment.get("bodyHTML", "")
         comment_url = comment.get("url", "")
         
+        # Find raw XAML links
+        xaml_links = re.findall(r'href="(https://(?:raw\.githubusercontent\.com|github\.com)/[^"]+\.xaml)"', body_html)
+        xaml_links += re.findall(r'\((https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)\)', body_html)
+
+        # 🚫 Skip if no .xaml link (not a real theme)
+        if not xaml_links:
+            continue
+
         # Look for theme name at the beginning of the post (either as heading or first line)
         lines = body_text.strip().split('\n')
         theme_name = None
@@ -68,21 +76,14 @@ def extract_theme_info(comments):
         
         # Find GitHub repo links
         repo_links = re.findall(r'href="(https://github\.com/[^"]+)"', body_html)
-        # Filter out any links that end with issues, pulls, etc.
         repo_links = [link for link in repo_links if not re.search(r'/(issues|pulls|discussions|wiki)/?$', link)]
         download_link = repo_links[0] if repo_links else ""
-        
-        # Find raw XAML links
-        xaml_links = re.findall(r'href="(https://(?:raw\.githubusercontent\.com|github\.com)/[^"]+\.xaml)"', body_html)
-        xaml_links += re.findall(r'\((https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)\)', body_html)
         
         if xaml_links and not download_link:
             download_link = xaml_links[0]
         
-        # Remove any links from theme name
         theme_name = re.sub(r'\[|\]|\(|\)|http.*', '', theme_name).strip()
         
-        # Get XAML file names if possible
         xaml_files = []
         for link in xaml_links:
             file_match = re.search(r'/([^/]+\.xaml)', link)
@@ -100,6 +101,7 @@ def extract_theme_info(comments):
         })
     
     return themes
+
 
 def update_readme_table(themes):
     """Update the README.md with theme information in a table"""
