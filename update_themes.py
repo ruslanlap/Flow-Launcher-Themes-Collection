@@ -39,66 +39,63 @@ def fetch_discussion_comments():
         raise Exception(f"Query failed with code {response.status_code}: {response.text}")
 
 def extract_theme_info(comments):
-    """Extract theme information from comments"""
+    """Extract theme information from comments using extended logic:
+       Consider a comment as a theme if it contains either a .xaml link or a GitHub repository link.
+    """
     themes = []
-    
-    # Список ключових слів, за якими визначаємо, що запис не є темою (інструкції чи інші оголошення)
-    skip_keywords = ["how to submit", "instruction", "share your feedback", "just themed", "theme collection"]
     
     for comment in comments:
         author = comment.get("author", {}).get("login", "Unknown")
         body_text = comment.get("bodyText", "")
         body_html = comment.get("bodyHTML", "")
-        comment_url = comment.get("url", "")
         
-        # Знайдемо посилання на XAML
-        xaml_links = re.findall(r'href="(https://(?:raw\.githubusercontent\.com|github\.com)/[^"]+\.xaml)"', body_html)
-        xaml_links += re.findall(r'\((https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)\)', body_html)
-
-        # 🚫 Пропустити, якщо немає посилання на .xaml (не тема)
-        if not xaml_links:
+        # Шукаємо посилання на .xaml з bodyHTML і bodyText
+        xaml_links_html = re.findall(r'href="(https://(?:raw\.githubusercontent\.com|github\.com)/[^"]+\.xaml)"', body_html)
+        xaml_links_md = re.findall(r'\((https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)\)', body_html)
+        xaml_links_text = re.findall(r'(https?://[^\s]+\.xaml)', body_text)
+        xaml_links = list(set(xaml_links_html + xaml_links_md + xaml_links_text))
+        
+        # Знаходимо всі GitHub посилання з bodyHTML
+        repo_links = re.findall(r'href="(https://github\.com/[^"]+)"', body_html)
+        # Фільтруємо посилання, що ведуть на issues, pulls, discussions, wiki
+        repo_links = [link for link in repo_links if not re.search(r'/(issues|pulls|discussions|wiki)/?$', link)]
+        download_link = repo_links[0] if repo_links else ""
+        
+        # Якщо не знайдено ні посилань на .xaml, ні GitHub посилань – пропускаємо цей коментар
+        if not (xaml_links or download_link):
             continue
-
-        # Отримуємо назву теми – шукаємо заголовок або перший рядок
+        
+        # Визначаємо назву теми: намагаємося знайти перший рядок із принаймні 3 словами, що не містить '.xaml'
         lines = body_text.strip().split('\n')
         theme_name = None
-        
         if lines:
-            # Перевірка на заголовок markdown
-            heading_match = re.search(r'^#+\s*(.+?)$', lines[0].strip())
-            if heading_match:
-                theme_name = heading_match.group(1).strip()
-            elif lines[0].strip():
+            for line in lines:
+                clean_line = line.strip()
+                if clean_line and ".xaml" not in clean_line and len(clean_line.split()) >= 3:
+                    theme_name = clean_line
+                    break
+            if not theme_name:
                 theme_name = lines[0].strip()
         
         if not theme_name:
             continue
         
-        # Фільтрація по ключовим словам, щоб уникнути не-тем
-        lower_name = theme_name.lower()
-        if any(keyword in lower_name for keyword in skip_keywords):
-            continue
-
-        # Перевіряємо, чи міститься зображення (як ознака preview)
+        # Перевіряємо наявність зображень (як ознака preview)
         has_image = "<img" in body_html
         
-        # Знаходимо посилання на GitHub репозиторій
-        repo_links = re.findall(r'href="(https://github\.com/[^"]+)"', body_html)
-        repo_links = [link for link in repo_links if not re.search(r'/(issues|pulls|discussions|wiki)/?$', link)]
-        download_link = repo_links[0] if repo_links else ""
-        
-        if xaml_links and not download_link:
+        # Якщо посилання з репо відсутнє, спробуємо використати перше .xaml посилання як download_link
+        if not download_link and xaml_links:
             download_link = xaml_links[0]
         
         # Очистимо назву від небажаних символів
         theme_name = re.sub(r'\[|\]|\(|\)|http.*', '', theme_name).strip()
         
+        # Витягуємо імена файлів із знайдених .xaml посилань
         xaml_files = []
         for link in xaml_links:
             file_match = re.search(r'/([^/]+\.xaml)', link)
             if file_match:
                 xaml_files.append(file_match.group(1))
-        
         xaml_files_text = " ".join(xaml_files) if xaml_files else f"{theme_name}.xaml *(assumed)*"
         
         themes.append({
@@ -115,7 +112,6 @@ def update_readme_table(themes):
     """Update the README.md with theme information in a table including numbering"""
     readme_path = "README.md"
     
-    # Створюємо нову структуру README
     content = [
         "# 🎨 Flow Launcher Themes Collection\n",
         "\n",
@@ -127,7 +123,6 @@ def update_readme_table(themes):
         "|------|----------|------------------|--------------|------------|-----------|\n"
     ]
     
-    # Додаємо записи тем з нумерацією
     for idx, theme in enumerate(themes, start=1):
         preview_status = "✅" if theme['has_image'] else ""
         safe_name = theme['name'].replace('|', '\\|')
@@ -140,11 +135,9 @@ def update_readme_table(themes):
         
         content.append(table_row)
     
-    # Додаємо футер
     content.append("\n---\n\n")
     content.append("*This README was automatically generated from the discussion posts on GitHub. For further details or updates, please refer to the original [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).*\n")
     
-    # Записуємо у README.md
     with open(readme_path, "w", encoding="utf-8") as file:
         file.writelines(content)
     
@@ -154,6 +147,5 @@ def update_readme_table(themes):
 if __name__ == "__main__":
     comments = fetch_discussion_comments()
     themes = extract_theme_info(comments)
-    # Сортуємо теми за назвою (без врахування регістру)
     themes.sort(key=lambda x: x['name'].lower())
     update_readme_table(themes)
