@@ -4,7 +4,6 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 
 | Theme | XAML File(s) | Download Link | Author | Preview |
 |-------|--------------|---------------|--------|--------|
-| **** | Cyan.xaml Jurassic.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/blob/master/Cyan.xaml) | ruslanlap | ✓ |
 | **** | .xaml *(assumed)* | [Download](https://github.com/soul4feels/sofokeel) | soul4kills | ✓ |
 | **A low-satruation pink theme** | A low-satruation pink theme.xaml *(assumed)* | [Download](https://github.com/Shiman-Zhu/flow-launcher-theme-morandi-colors) | Shiman-Zhu | ✓ |
 | **BloodMoon** | BloodMoon.xaml *(assumed)* | [Download](https://github.com/DebugBoard/BloodMoon) | DebugBoard | ✓ |
@@ -31,10 +30,12 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | **SlimDarkBlur** | SlimDarkBlur.xaml SlimDarkBlurDeep.xaml SlimDarkBlurAccent.xaml | [Download](https://github.com/WhoSowSee/SlimDarkBlur.flow) | WhoSowSee | ✓ |
 | **Tokyo Night & Tokyo Night Storm** | Tokyo Night & Tokyo Night Storm.xaml *(assumed)* | [Download](https://github.com/SoraTenshi/FlowLauncher-TokyoNight) | SoraTenshi | ✓ |
 | **☁️Fluent Blur** | ☁️Fluent Blur.xaml *(assumed)* | [Download](https://github.com/Flow-Launcher/Flow.Launcher/issues/2387) | Arcticn | ✓ |
+| **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | ✨ How to Submit Your Theme to the Flow Launcher Theme Collection.xaml *(assumed)* | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✓ |
 | **➡ Github Repo with Theme** | RetroWave.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✓ |
 | **🌌 Palenight Theme 🌌** | 🌌 Palenight Theme 🌌.xaml *(assumed)* | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✓ |
 | **🎨 Alfred Blue** | 🎨 Alfred Blue.xaml *(assumed)* | [Download](https://github.com/Qulierm/AlfredBlue/blob/main/Flow.Launcher%2019.05.2024%2011_53_21.png?raw=true) | Qulierm | ✓ |
 | **🎨 CircleDarkBlur Theme** | CircleDarkBlur.xaml | [Download](https://github.com/z1nc0r3/CircleDarkBlur.Flow-Launcher) | z1nc0r3 | ✓ |
+| **🎨 Cyan & Jurassic Themes** | Cyan.xaml Cyan.xaml Jurassic.xaml Jurassic.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/blob/master/Cyan.xaml) | ruslanlap | ✓ |
 | **🎨 Gold Box Flow.Laucher Theme** | Gold%20Box.xaml | [Download](https://github.com/Flow-Launcher/Flow.Launcher) | indigofairyx | ✓ |
 | **🎨 onsetGlaze** | 🎨 onsetGlaze.xaml *(assumed)* | [Download](https://github.com/abhidahal/onsetGlaze.flow) | abhidahal | ✓ |
 | **🎨 Raytrace** | 🎨 Raytrace.xaml *(assumed)* | [Download](https://github.com/SamFrox/Raytrace/tree/main) | nitrogeo | ✓ |
