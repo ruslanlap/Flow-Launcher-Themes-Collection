@@ -25,6 +25,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | **Mojito Pro** | Mojito Pro.xaml *(assumed)* | [Download](https://github.com/mishatoshi/mojito-pro-flowlauncher-theme) | mishatoshi | ✓ |
 | **Monokai** | Monokai.xaml *(assumed)* | [Download](https://github.com/AtarianComputing/Monokai.flow) | AtarianComputing | ✓ |
 | **My best theme is slim light. I was thinking sadly that the fonts for flow launcher were too big. And then came slim light with an air of perfection. However, also lurking nearby was avarice: how do I add a blur/mica effect to slimlight?** | My best theme is slim light. I was thinking sadly that the fonts for flow launcher were too big. And then came slim light with an air of perfection. However, also lurking nearby was avarice: how do I add a blur/mica effect to slimlight?.xaml *(assumed)* | | trACEroam |  |
+| **Rosé Pine** | Rosé Pine.xaml *(assumed)* | [Download](https://github.com/ianklapouch/rose-pine-flow-launcher) | ianklapouch | ✓ |
 | **SEE: Flow-Launcher-Themes-Collection** | SEE: Flow-Launcher-Themes-Collection.xaml *(assumed)* | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection) | ruslanlap | ✓ |
 | **SlimDark** | SlimDark.xaml *(assumed)* | [Download](https://github.com/0o-Mi/Flow-Launcher-SlimDark-Theme) | monandszy | ✓ |
 | **SlimDarkBlur** | SlimDarkBlur.xaml SlimDarkBlurDeep.xaml SlimDarkBlurAccent.xaml | [Download](https://github.com/WhoSowSee/SlimDarkBlur.flow) | WhoSowSee | ✓ |
