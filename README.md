@@ -25,6 +25,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | **Mojito Pro** | Mojito Pro.xaml *(assumed)* | [Download](https://github.com/mishatoshi/mojito-pro-flowlauncher-theme) | mishatoshi | ✓ |
 | **Monokai** | Monokai.xaml *(assumed)* | [Download](https://github.com/AtarianComputing/Monokai.flow) | AtarianComputing | ✓ |
 | **My best theme is slim light. I was thinking sadly that the fonts for flow launcher were too big. And then came slim light with an air of perfection. However, also lurking nearby was avarice: how do I add a blur/mica effect to slimlight?** | My best theme is slim light. I was thinking sadly that the fonts for flow launcher were too big. And then came slim light with an air of perfection. However, also lurking nearby was avarice: how do I add a blur/mica effect to slimlight?.xaml *(assumed)* | | trACEroam |  |
+| **RetroWave & RetroWave1984** | RetroWave.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✓ |
 | **Rosé Pine** | Rosé Pine.xaml *(assumed)* | [Download](https://github.com/ianklapouch/rose-pine-flow-launcher) | ianklapouch | ✓ |
 | **SEE: Flow-Launcher-Themes-Collection** | SEE: Flow-Launcher-Themes-Collection.xaml *(assumed)* | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection) | ruslanlap | ✓ |
 | **SlimDark** | SlimDark.xaml *(assumed)* | [Download](https://github.com/0o-Mi/Flow-Launcher-SlimDark-Theme) | monandszy | ✓ |
@@ -32,7 +33,6 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | **Tokyo Night & Tokyo Night Storm** | Tokyo Night & Tokyo Night Storm.xaml *(assumed)* | [Download](https://github.com/SoraTenshi/FlowLauncher-TokyoNight) | SoraTenshi | ✓ |
 | **☁️Fluent Blur** | ☁️Fluent Blur.xaml *(assumed)* | [Download](https://github.com/Flow-Launcher/Flow.Launcher/issues/2387) | Arcticn | ✓ |
 | **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | ✨ How to Submit Your Theme to the Flow Launcher Theme Collection.xaml *(assumed)* | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✓ |
-| **➡ Github Repo with Theme** | RetroWave.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✓ |
 | **🌌 Palenight Theme 🌌** | 🌌 Palenight Theme 🌌.xaml *(assumed)* | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✓ |
 | **🎨 Alfred Blue** | 🎨 Alfred Blue.xaml *(assumed)* | [Download](https://github.com/Qulierm/AlfredBlue/blob/main/Flow.Launcher%2019.05.2024%2011_53_21.png?raw=true) | Qulierm | ✓ |
 | **🎨 CircleDarkBlur Theme** | CircleDarkBlur.xaml | [Download](https://github.com/z1nc0r3/CircleDarkBlur.Flow-Launcher) | z1nc0r3 | ✓ |
