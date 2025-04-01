@@ -42,39 +42,47 @@ def extract_theme_info(comments):
     """Extract theme information from comments"""
     themes = []
     
+    # Список ключових слів, за якими визначаємо, що запис не є темою (інструкції чи інші оголошення)
+    skip_keywords = ["how to submit", "instruction", "share your feedback", "just themed", "theme collection"]
+    
     for comment in comments:
         author = comment.get("author", {}).get("login", "Unknown")
         body_text = comment.get("bodyText", "")
         body_html = comment.get("bodyHTML", "")
         comment_url = comment.get("url", "")
         
-        # Find raw XAML links
+        # Знайдемо посилання на XAML
         xaml_links = re.findall(r'href="(https://(?:raw\.githubusercontent\.com|github\.com)/[^"]+\.xaml)"', body_html)
         xaml_links += re.findall(r'\((https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)\)', body_html)
 
-        # 🚫 Skip if no .xaml link (not a real theme)
+        # 🚫 Пропустити, якщо немає посилання на .xaml (не тема)
         if not xaml_links:
             continue
 
-        # Look for theme name at the beginning of the post (either as heading or first line)
+        # Отримуємо назву теми – шукаємо заголовок або перший рядок
         lines = body_text.strip().split('\n')
         theme_name = None
         
-        # Check for heading patterns
-        heading_match = re.search(r'^#+\s*(.+?)$', lines[0].strip()) if lines else None
-        if heading_match:
-            theme_name = heading_match.group(1).strip()
-        # If no heading, take the first non-empty line
-        elif lines and lines[0].strip():
-            theme_name = lines[0].strip()
-            
+        if lines:
+            # Перевірка на заголовок markdown
+            heading_match = re.search(r'^#+\s*(.+?)$', lines[0].strip())
+            if heading_match:
+                theme_name = heading_match.group(1).strip()
+            elif lines[0].strip():
+                theme_name = lines[0].strip()
+        
         if not theme_name:
             continue
-            
-        # Check if post contains images (likely theme previews)
+        
+        # Фільтрація по ключовим словам, щоб уникнути не-тем
+        lower_name = theme_name.lower()
+        if any(keyword in lower_name for keyword in skip_keywords):
+            continue
+
+        # Перевіряємо, чи міститься зображення (як ознака preview)
         has_image = "<img" in body_html
         
-        # Find GitHub repo links
+        # Знаходимо посилання на GitHub репозиторій
         repo_links = re.findall(r'href="(https://github\.com/[^"]+)"', body_html)
         repo_links = [link for link in repo_links if not re.search(r'/(issues|pulls|discussions|wiki)/?$', link)]
         download_link = repo_links[0] if repo_links else ""
@@ -82,6 +90,7 @@ def extract_theme_info(comments):
         if xaml_links and not download_link:
             download_link = xaml_links[0]
         
+        # Очистимо назву від небажаних символів
         theme_name = re.sub(r'\[|\]|\(|\)|http.*', '', theme_name).strip()
         
         xaml_files = []
@@ -102,12 +111,11 @@ def extract_theme_info(comments):
     
     return themes
 
-
 def update_readme_table(themes):
-    """Update the README.md with theme information in a table"""
+    """Update the README.md with theme information in a table including numbering"""
     readme_path = "README.md"
     
-    # Create a new README structure
+    # Створюємо нову структуру README
     content = [
         "# 🎨 Flow Launcher Themes Collection\n",
         "\n",
@@ -119,7 +127,7 @@ def update_readme_table(themes):
         "|------|----------|------------------|--------------|------------|-----------|\n"
     ]
     
-    # Add theme entries to table
+    # Додаємо записи тем з нумерацією
     for idx, theme in enumerate(themes, start=1):
         preview_status = "✅" if theme['has_image'] else ""
         safe_name = theme['name'].replace('|', '\\|')
@@ -132,22 +140,20 @@ def update_readme_table(themes):
         
         content.append(table_row)
     
-    # Add footer
+    # Додаємо футер
     content.append("\n---\n\n")
     content.append("*This README was automatically generated from the discussion posts on GitHub. For further details or updates, please refer to the original [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).*\n")
     
-    # Write to README
+    # Записуємо у README.md
     with open(readme_path, "w", encoding="utf-8") as file:
         file.writelines(content)
     
     print(f"README.md updated with {len(themes)} themes in table format.")
     return True
 
-
-
 if __name__ == "__main__":
     comments = fetch_discussion_comments()
     themes = extract_theme_info(comments)
-    # Sort themes by name
+    # Сортуємо теми за назвою (без врахування регістру)
     themes.sort(key=lambda x: x['name'].lower())
     update_readme_table(themes)
