@@ -1,8 +1,10 @@
 name: 🧠 Weekly Flow Launcher Theme Sync
+
 on:
   schedule:
     - cron: '0 0 * * 0'  # ⏰ Every Sunday at 00:00 UTC
   workflow_dispatch:     # 🖐 Manual trigger
+
 jobs:
   update:
     name: 🔄 Fetch & Update Themes
