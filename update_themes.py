@@ -2,15 +2,15 @@ import os
 import re
 import requests
 
-# Отримання GitHub токену з змінних середовища
+# Get GitHub token from environment variables
 GITHUB_TOKEN = os.environ.get('PAT_TOKEN')
 if not GITHUB_TOKEN:
-    raise Exception("PAT_TOKEN не встановлено. Додайте його як змінну середовища.")
+    raise Exception("PAT_TOKEN not set. Add it as an environment variable.")
 
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 
 def fetch_discussion_comments():
-    """Отримати коментарі з обговорення тем Flow Launcher"""
+    """Fetch comments from the Flow Launcher Theme Gallery discussion"""
     query = """
     {
       repository(owner: "Flow-Launcher", name: "Flow.Launcher") {
@@ -38,7 +38,7 @@ def fetch_discussion_comments():
         raise Exception(f"Query failed with code {response.status_code}: {response.text}")
 
 def extract_theme_info(comments):
-    """Витягти інформацію про теми з коментарів"""
+    """Extract theme information from comments"""
     themes = []
     
     for comment in comments:
@@ -47,18 +47,18 @@ def extract_theme_info(comments):
         body_html = comment.get("bodyHTML", "")
         comment_url = comment.get("url", "")
         
-        # Пошук назви теми
+        # Look for theme name
         theme_name_match = re.search(r'(?:^|\n)#+\s*(.+?)(?:\n|$)', body_text)
         theme_name = theme_name_match.group(1).strip() if theme_name_match else None
         
         if not theme_name:
             continue
             
-        # Пошук посилань на XAML файли
+        # Look for XAML file links
         xaml_links = re.findall(r'href="(https://[^"]+\.xaml)"', body_html)
         xaml_links += re.findall(r'\((https://[^)]+\.xaml)\)', body_html)
         
-        # Пошук назв XAML файлів
+        # Find XAML file names
         xaml_names = []
         for link in xaml_links:
             name_match = re.search(r'/([^/]+\.xaml)', link)
@@ -68,7 +68,7 @@ def extract_theme_info(comments):
                 xaml_names.append(f"{theme_name}.xaml *(assumed)*")
         
         if not xaml_links:
-            # Пошук посилань на репозиторії
+            # Look for repository links
             repo_links = re.findall(r'href="(https://github\.com/[^"]+)"', body_html)
             repo_links = [link for link in repo_links if not link.endswith('.xaml')]
             
@@ -87,24 +87,24 @@ def extract_theme_info(comments):
     return themes
 
 def update_readme_table(themes):
-    """Оновити таблицю в README.md з новими темами"""
+    """Update the README.md table with new themes"""
     readme_path = "README.md"
     
     try:
         with open(readme_path, "r", encoding="utf-8") as file:
             content = file.readlines()
     except FileNotFoundError:
-        # Створити новий README.md якщо він не існує
+        # Create a new README.md if it doesn't exist
         content = [
             "# Flow Launcher Themes Collection\n",
             "\n",
             "This README aggregates theme submissions (XAML files) shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438). Use the table below to quickly access each theme's XAML file.\n",
             "\n",
             "| Theme | XAML File(s) | Download Link | Author |\n",
-            "|-------|--------------|--------------|--------|\n"
+            "|-------|--------------|---------------|--------|\n"
         ]
     
-    # Знайти початок і кінець таблиці
+    # Find the beginning and end of the table
     table_start = -1
     table_end = -1
     
@@ -119,15 +119,15 @@ def update_readme_table(themes):
         table_end = len(content)
     
     if table_start == -1:
-        # Таблиця не знайдена, додаємо її
+        # Table not found, add it
         content.extend([
             "| Theme | XAML File(s) | Download Link | Author |\n",
-            "|-------|--------------|--------------|--------|\n"
+            "|-------|--------------|---------------|--------|\n"
         ])
         table_start = len(content) - 2
         table_end = len(content)
     
-    # Витягнути існуючі теми з таблиці
+    # Extract existing themes from the table
     existing_themes = {}
     for i in range(table_start + 2, table_end):
         if i < len(content) and "|" in content[i]:
@@ -136,7 +136,7 @@ def update_readme_table(themes):
                 theme_name = parts[1].strip().strip("*").strip()
                 existing_themes[theme_name.lower()] = content[i]
     
-    # Додати нові теми
+    # Add new themes
     new_rows = []
     for theme in themes:
         theme_name = theme["name"].strip()
@@ -145,21 +145,21 @@ def update_readme_table(themes):
             new_rows.append(new_row)
             existing_themes[theme_name.lower()] = new_row
     
-    # Якщо є нові теми, оновлюємо README
+    # If there are new themes, update the README
     if new_rows:
-        # Зібрати всі рядки таблиці
+        # Collect all table rows
         table_rows = list(existing_themes.values())
         
-        # Оновити вміст
+        # Update content
         updated_content = content[:table_start + 2] + table_rows + ([] if table_end == len(content) else content[table_end:])
         
         with open(readme_path, "w", encoding="utf-8") as file:
             file.writelines(updated_content)
         
-        print(f"README.md оновлено з {len(new_rows)} новими темами.")
+        print(f"README.md updated with {len(new_rows)} new themes.")
         return True
     else:
-        print("Немає нових тем для додавання.")
+        print("No new themes to add.")
         return False
 
 if __name__ == "__main__":

@@ -1,36 +1,29 @@
 name: 🧠 Weekly Flow Launcher Theme Sync
-
 on:
   schedule:
-    - cron: '0 0 * * 0'  # ⏰ Щонеділі о 00:00 UTC
-  workflow_dispatch:     # 🖐 Ручний запуск
-
+    - cron: '0 0 * * 0'  # ⏰ Every Sunday at 00:00 UTC
+  workflow_dispatch:     # 🖐 Manual trigger
 jobs:
   update:
     name: 🔄 Fetch & Update Themes
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 🔑 Необхідні права
-
+      contents: write  # 🔑 Required permissions
     steps:
       - name: 📦 Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: 🐍 Set Up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
       - name: 📥 Install Dependencies
         run: pip install requests
-
       - name: 📡 Run Theme Sync Script
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Ваш персональний токен
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Your personal access token
         run: python update_themes.py
-
       - name: 💾 Check for README changes
         id: check_changes
         run: |
@@ -39,28 +32,27 @@ jobs:
           else
             echo "changes=false" >> $GITHUB_OUTPUT
           fi
-
       - name: 🔄 Commit & Push Changes
         if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --global user.name 'Theme Sync Bot 🤖'
           git config --global user.email 'themes-bot@flowlauncher.dev'
-          
+         
           # Stage README changes first
           git add README.md
           git commit -m "🧵 Auto-update README with new themes ✨"
-          
+         
           # Create a temporary branch for our changes
           git branch temp-changes
-          
+         
           # Switch to master and pull latest changes
           git checkout master
           git pull origin master
-          
+         
           # Apply our changes on top of the latest master
           git checkout temp-changes
           git rebase master
-          
+         
           # Push the changes back to master
           git checkout master
           git merge --ff-only temp-changes
