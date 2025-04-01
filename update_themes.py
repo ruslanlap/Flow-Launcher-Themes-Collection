@@ -113,20 +113,22 @@ def update_readme_table(themes):
         "\n",
         "This README aggregates theme submissions shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).\n",
         "\n",
-        "| 🎨 Theme | 🗂 XAML File(s) | 📥 Download | ✍️ Author | 🖼️ Preview |\n",
-        "|----------|------------------|--------------|------------|-----------|\n"
+        f"📦 **Total Themes:** {len(themes)}\n",
+        "\n",
+        "| 🔢 # | 🎨 Theme | 🗂 XAML File(s) | 📥 Download | ✍️ Author | 🖼️ Preview |\n",
+        "|------|----------|------------------|--------------|------------|-----------|\n"
     ]
     
     # Add theme entries to table
-    for theme in themes:
+    for idx, theme in enumerate(themes, start=1):
         preview_status = "✅" if theme['has_image'] else ""
         safe_name = theme['name'].replace('|', '\\|')
         safe_xaml = theme['xaml_files'].replace('|', '\\|')
         
         if theme['download_link']:
-            table_row = f"| **{safe_name}** | {safe_xaml} | [Download]({theme['download_link']}) | {theme['author']} | {preview_status} |\n"
+            table_row = f"| {idx} | **{safe_name}** | {safe_xaml} | [Download]({theme['download_link']}) | {theme['author']} | {preview_status} |\n"
         else:
-            table_row = f"| **{safe_name}** | {safe_xaml} | | {theme['author']} | {preview_status} |\n"
+            table_row = f"| {idx} | **{safe_name}** | {safe_xaml} | | {theme['author']} | {preview_status} |\n"
         
         content.append(table_row)
     
@@ -140,6 +142,7 @@ def update_readme_table(themes):
     
     print(f"README.md updated with {len(themes)} themes in table format.")
     return True
+
 
 
 if __name__ == "__main__":
