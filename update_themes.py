@@ -49,7 +49,7 @@ def extract_theme_info(comments):
         body_text = comment.get("bodyText", "")
         body_html = comment.get("bodyHTML", "")
         
-        # Шукаємо посилання на .xaml з bodyHTML і bodyText
+        # Знаходимо посилання на .xaml з bodyHTML і bodyText
         xaml_links_html = re.findall(r'href="(https://(?:raw\.githubusercontent\.com|github\.com)/[^"]+\.xaml)"', body_html)
         xaml_links_md = re.findall(r'\((https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)\)', body_html)
         xaml_links_text = re.findall(r'(https?://[^\s]+\.xaml)', body_text)
