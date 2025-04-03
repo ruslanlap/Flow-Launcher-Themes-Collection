@@ -9,6 +9,7 @@ if not GITHUB_TOKEN:
 
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 
+
 def fetch_discussion_comments():
     """Fetch comments from the Flow Launcher Theme Gallery discussion"""
     query = """
@@ -38,34 +39,29 @@ def fetch_discussion_comments():
     else:
         raise Exception(f"Query failed with code {response.status_code}: {response.text}")
 
+
 def extract_theme_info(comments):
-    """Extract theme information from comments using extended logic:
-       Consider a comment as a theme if it contains either a .xaml link or a GitHub repository link.
-    """
+    """Extract theme information from comments with unique .xaml files per theme."""
     themes = []
-    
+    seen_names = set()
+
     for comment in comments:
         author = comment.get("author", {}).get("login", "Unknown")
         body_text = comment.get("bodyText", "")
         body_html = comment.get("bodyHTML", "")
-        
-        # Знаходимо посилання на .xaml з bodyHTML і bodyText
+
         xaml_links_html = re.findall(r'href="(https://(?:raw\.githubusercontent\.com|github\.com)/[^"]+\.xaml)"', body_html)
-        xaml_links_md = re.findall(r'\((https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)\)', body_html)
+        xaml_links_md = re.findall(r'(https://(?:raw\.githubusercontent\.com|github\.com)/[^)]+\.xaml)', body_html)
         xaml_links_text = re.findall(r'(https?://[^\s]+\.xaml)', body_text)
         xaml_links = list(set(xaml_links_html + xaml_links_md + xaml_links_text))
-        
-        # Знаходимо всі GitHub посилання з bodyHTML
+
         repo_links = re.findall(r'href="(https://github\.com/[^"]+)"', body_html)
-        # Фільтруємо посилання, що ведуть на issues, pulls, discussions, wiki
         repo_links = [link for link in repo_links if not re.search(r'/(issues|pulls|discussions|wiki)/?$', link)]
         download_link = repo_links[0] if repo_links else ""
-        
-        # Якщо не знайдено ні посилань на .xaml, ні GitHub посилань – пропускаємо цей коментар
+
         if not (xaml_links or download_link):
             continue
-        
-        # Визначаємо назву теми: намагаємося знайти перший рядок із принаймні 3 словами, що не містить '.xaml'
+
         lines = body_text.strip().split('\n')
         theme_name = None
         if lines:
@@ -76,28 +72,31 @@ def extract_theme_info(comments):
                     break
             if not theme_name:
                 theme_name = lines[0].strip()
-        
+
         if not theme_name:
             continue
-        
-        # Перевіряємо наявність зображень (як ознака preview)
+
+        theme_name = re.sub(r'||||http.*', '', theme_name).strip()
+
+        # Перевірка на унікальність теми
+        if theme_name.lower() in seen_names:
+            continue
+        seen_names.add(theme_name.lower())
+
         has_image = "<img" in body_html
-        
-        # Якщо посилання з репо відсутнє, спробуємо використати перше .xaml посилання як download_link
+
         if not download_link and xaml_links:
             download_link = xaml_links[0]
-        
-        # Очистимо назву від небажаних символів
-        theme_name = re.sub(r'\[|\]|\(|\)|http.*', '', theme_name).strip()
-        
-        # Витягуємо імена файлів із знайдених .xaml посилань
-        xaml_files = []
+
+        # Унікальні імена .xaml файлів
+        xaml_files = set()
         for link in xaml_links:
             file_match = re.search(r'/([^/]+\.xaml)', link)
             if file_match:
-                xaml_files.append(file_match.group(1))
+                xaml_files.add(file_match.group(1))
+        xaml_files = sorted(xaml_files)
         xaml_files_text = " ".join(xaml_files) if xaml_files else f"{theme_name}.xaml *(assumed)*"
-        
+
         themes.append({
             "name": theme_name,
             "xaml_files": xaml_files_text,
@@ -105,13 +104,14 @@ def extract_theme_info(comments):
             "author": author,
             "has_image": has_image
         })
-    
+
     return themes
+
 
 def update_readme_table(themes):
     """Update the README.md with theme information in a table including numbering"""
     readme_path = "README.md"
-    
+
     content = [
         "# 🎨 Flow Launcher Themes Collection\n",
         "\n",
@@ -122,27 +122,28 @@ def update_readme_table(themes):
         "| 🔢 # | 🎨 Theme | 🗂 XAML File(s) | 📥 Download | ✍️ Author | 🖼️ Preview |\n",
         "|------|----------|------------------|--------------|------------|-----------|\n"
     ]
-    
+
     for idx, theme in enumerate(themes, start=1):
         preview_status = "✅" if theme['has_image'] else ""
         safe_name = theme['name'].replace('|', '\\|')
         safe_xaml = theme['xaml_files'].replace('|', '\\|')
-        
+
         if theme['download_link']:
             table_row = f"| {idx} | **{safe_name}** | {safe_xaml} | [Download]({theme['download_link']}) | {theme['author']} | {preview_status} |\n"
         else:
             table_row = f"| {idx} | **{safe_name}** | {safe_xaml} | | {theme['author']} | {preview_status} |\n"
-        
+
         content.append(table_row)
-    
+
     content.append("\n---\n\n")
     content.append("*This README was automatically generated from the discussion posts on GitHub. For further details or updates, please refer to the original [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).*\n")
-    
+
     with open(readme_path, "w", encoding="utf-8") as file:
         file.writelines(content)
-    
+
     print(f"README.md updated with {len(themes)} themes in table format.")
     return True
+
 
 if __name__ == "__main__":
     comments = fetch_discussion_comments()
