@@ -16,7 +16,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | 8 | **Download from GitHub** | SlimDarkBlur.xaml SlimDarkBlurAccent.xaml SlimDarkBlurDeep.xaml | [Download](https://github.com/WhoSowSee/SlimDarkBlur.flow) | WhoSowSee | ✅ |
 | 9 | **Download from Here!** | Download from Here!.xaml *(assumed)* | [Download](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438?sort=new#discussioncomment-10400585) | Miensoap | ✅ |
 | 10 | **Flow Launcher Ayu dark theme** | Flow Launcher Ayu dark theme.xaml *(assumed)* | [Download](https://github.com/dempfi/ayu) | icebruce | ✅ |
-| 11 | **Fluent11 is a Flow Launcher Theme Based On Windows 11 Dark and Fluent Design Principles with Acrylic Blur** | Fluent11_DarkBlueEnhanced.xaml Fluent11_DarkBlueOriginal.xaml Fluent11_DarkEnhanced.xaml Fluent11_DarkOriginal.xaml Fluent11_LegacyDark.xaml Fluent11_StrongDark.xaml | [Download](https://raw.githubusercontent.com/TechySC23/Fluent11Dark/refs/heads/main/Fluent11_DarkBlueEnhanced.xaml) | TechySC23 | ✅ |
+| 11 | **Fluent11 is a Flow Launcher Theme Based On Windows 11 Dark and Fluent Design Principles with Acrylic Blur** | Fluent11_DarkBlueEnhanced.xaml Fluent11_DarkBlueOriginal.xaml Fluent11_DarkEnhanced.xaml Fluent11_DarkOriginal.xaml Fluent11_LegacyDark.xaml Fluent11_StrongDark.xaml | [Download](https://raw.githubusercontent.com/TechySC23/Fluent11Dark/refs/heads/main/Fluent11_LegacyDark.xaml) | TechySC23 | ✅ |
 | 12 | **Here you can find many themes for Flow Launcher 🎨✨ You can also add your own to the list – just make a Pull Request! 🚀💡** | Here you can find many themes for Flow Launcher 🎨✨ You can also add your own to the list – just make a Pull Request! 🚀💡.xaml *(assumed)* | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection) | ruslanlap | ✅ |
 | 13 | **I made some edits to the SlimDark theme created by user @monandszy to be more consistent with Windows 10 theming** | SlimDark%20(Win10).xaml | [Download](https://github.com/monandszy) | rottakore | ✅ |
 | 14 | **I want to share with you my custom theme !** | I want to share with you my custom theme !.xaml *(assumed)* | [Download](https://github.com/MzelleLilas/flowlauncher-theme) | MzelleLilas | ✅ |
@@ -40,7 +40,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | 32 | **🎨 CircleDarkBlur Theme** | CircleDarkBlur.xaml | [Download](https://github.com/z1nc0r3/CircleDarkBlur.Flow-Launcher) | z1nc0r3 | ✅ |
 | 33 | **🎨 Cyan & Jurassic Themes** | Cyan.xaml Jurassic.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/blob/master/Cyan.xaml) | ruslanlap | ✅ |
 | 34 | **🎨 Gold Box Flow.Laucher Theme** | Gold%20Box.xaml | [Download](https://github.com/Flow-Launcher/Flow.Launcher) | indigofairyx | ✅ |
-| 35 | **🎨 Palenight RetroWave Theme** | PalenightRetro.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/raw/main/PalenightRetro.xaml) | ruslanlap | ✅ |
+| 35 | **🎨 Palenight Theme / RetroWave Theme / TrueDracula** | Palenight.xaml RetroWave.xaml RetroWave1984.xaml TrueDracula.xaml | [Download](https://github.com/ruslanlap) | ruslanlap | ✅ |
 | 36 | **🎨Dracula True Theme** | DraculaTrue.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/raw/main/DraculaTrue.xaml) | ruslanlap | ✅ |
 
 ---
