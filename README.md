@@ -2,7 +2,7 @@
 
 This README aggregates theme submissions shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).
 
-📦 **Total Themes:** 37
+📦 **Total Themes:** 36
 
 | 🔢 # | 🎨 Theme | 🗂 XAML File(s) | 📥 Download | ✍️ Author | 🖼️ Preview |
 |------|----------|------------------|--------------|------------|-----------|
@@ -36,7 +36,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | 28 | **VeryBlack (Windows Colors)** | VeryBlack (Windows Colors).xaml *(assumed)* | [Download](https://github.com/DebugBoard/BloodMoon) | DebugBoard | ✅ |
 | 29 | **Violet is a theme for Flow Launcher.** | Violet.xaml | [Download](https://github.com/eliaszon/Violet.flow) | eliaszon | ✅ |
 | 30 | **☁️ Fluent Blur** | ☁️ Fluent Blur.xaml *(assumed)* | [Download](https://github.com/Arcticn/FluentBlur.flow) | Arcticn | ✅ |
-| 31 | **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | onsetGlaze.xaml | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✅ |
+
 | 32 | **🎨 Alfred Blue** | 🎨 Alfred Blue.xaml *(assumed)* | [Download](https://github.com/Qulierm/AlfredBlue/blob/main/Flow.Launcher%2019.05.2024%2011_53_21.png?raw=true) | Qulierm | ✅ |
 | 33 | **🎨 CircleDarkBlur Theme** | CircleDarkBlur.xaml | [Download](https://github.com/z1nc0r3/CircleDarkBlur.Flow-Launcher) | z1nc0r3 | ✅ |
 | 34 | **🎨 Cyan & Jurassic Themes** | Cyan.xaml Jurassic.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/blob/master/Cyan.xaml) | ruslanlap | ✅ |
