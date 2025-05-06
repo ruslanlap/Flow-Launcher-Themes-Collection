@@ -2,7 +2,7 @@
 
 This README aggregates theme submissions shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).
 
-📦 **Total Themes:** 36
+📦 **Total Themes:** 37
 
 | 🔢 # | 🎨 Theme | 🗂 XAML File(s) | 📥 Download | ✍️ Author | 🖼️ Preview |
 |------|----------|------------------|--------------|------------|-----------|
@@ -16,7 +16,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | 8 | **Download from GitHub** | SlimDarkBlur.xaml SlimDarkBlurAccent.xaml SlimDarkBlurDeep.xaml | [Download](https://github.com/WhoSowSee/SlimDarkBlur.flow) | WhoSowSee | ✅ |
 | 9 | **Download from Here!** | Download from Here!.xaml *(assumed)* | [Download](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438?sort=new#discussioncomment-10400585) | Miensoap | ✅ |
 | 10 | **Flow Launcher Ayu dark theme** | Flow Launcher Ayu dark theme.xaml *(assumed)* | [Download](https://github.com/dempfi/ayu) | icebruce | ✅ |
-| 11 | **Fluent11 is a Flow Launcher Theme Based On Windows 11 Dark and Fluent Design Principles with Acrylic Blur** | Fluent11_DarkBlueEnhanced.xaml Fluent11_DarkBlueOriginal.xaml Fluent11_DarkEnhanced.xaml Fluent11_DarkOriginal.xaml Fluent11_LegacyDark.xaml Fluent11_StrongDark.xaml | [Download](https://raw.githubusercontent.com/TechySC23/Fluent11Dark/refs/heads/main/Fluent11_DarkBlueEnhanced.xaml) | TechySC23 | ✅ |
+| 11 | **Fluent11 is a Flow Launcher Theme Based On Windows 11 Dark and Fluent Design Principles with Acrylic Blur** | Fluent11_DarkBlueEnhanced.xaml Fluent11_DarkBlueOriginal.xaml Fluent11_DarkEnhanced.xaml Fluent11_DarkOriginal.xaml Fluent11_LegacyDark.xaml Fluent11_StrongDark.xaml | [Download](https://raw.githubusercontent.com/TechySC23/Fluent11Dark/refs/heads/main/Fluent11_DarkBlueOriginal.xaml) | TechySC23 | ✅ |
 | 12 | **Full AMOLED Themes here** | Full AMOLED Themes here.xaml *(assumed)* | [Download](https://github.com/Hlomatsimaxwell/Amoled-Flow-Launcher-Theme) | Hlomatsimaxwell | ✅ |
 | 13 | **Here you can find many themes for Flow Launcher 🎨✨ You can also add your own to the list – just make a Pull Request! 🚀💡** | Here you can find many themes for Flow Launcher 🎨✨ You can also add your own to the list – just make a Pull Request! 🚀💡.xaml *(assumed)* | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection) | ruslanlap | ✅ |
 | 14 | **I made some edits to the SlimDark theme created by user @monandszy to be more consistent with Windows 10 theming** | SlimDark%20(Win10).xaml | [Download](https://github.com/monandszy) | rottakore | ✅ |
@@ -36,7 +36,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | 28 | **VeryBlack (Windows Colors)** | VeryBlack (Windows Colors).xaml *(assumed)* | [Download](https://github.com/DebugBoard/BloodMoon) | DebugBoard | ✅ |
 | 29 | **Violet is a theme for Flow Launcher.** | Violet.xaml | [Download](https://github.com/eliaszon/Violet.flow) | eliaszon | ✅ |
 | 30 | **☁️ Fluent Blur** | ☁️ Fluent Blur.xaml *(assumed)* | [Download](https://github.com/Arcticn/FluentBlur.flow) | Arcticn | ✅ |
-
+| 31 | **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | onsetGlaze.xaml | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✅ |
 | 32 | **🎨 Alfred Blue** | 🎨 Alfred Blue.xaml *(assumed)* | [Download](https://github.com/Qulierm/AlfredBlue/blob/main/Flow.Launcher%2019.05.2024%2011_53_21.png?raw=true) | Qulierm | ✅ |
 | 33 | **🎨 CircleDarkBlur Theme** | CircleDarkBlur.xaml | [Download](https://github.com/z1nc0r3/CircleDarkBlur.Flow-Launcher) | z1nc0r3 | ✅ |
 | 34 | **🎨 Cyan & Jurassic Themes** | Cyan.xaml Jurassic.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa/blob/master/Cyan.xaml) | ruslanlap | ✅ |
