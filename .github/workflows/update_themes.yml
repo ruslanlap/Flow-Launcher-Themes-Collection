@@ -2,63 +2,73 @@ name: 🧠 Weekly Flow Launcher Theme Sync
 
 on:
   schedule:
-    - cron: '0 0 * * 0'  # ⏰ Every Sunday at 00:00 UTC
-  workflow_dispatch:     # 🖐 Manual trigger
+    - cron: '0 0 * * 0'  # 00:00 UTC щонеділі (03:00 за Києвом під час EEST)
+  workflow_dispatch:
   push:
-    branches:
-      - master         # 🚀 Запуск при пуші в master
+    branches: [master]
+
+# Не запускай паралельні синки
+concurrency:
+  group: theme-sync-${{ github.ref }}
+  cancel-in-progress: true
+
+# Мінімальні глобальні права; більші — лише там, де треба
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   update:
     name: 🔄 Fetch & Update Themes
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 🔑 Required permissions
+      contents: write        # для commit у гілку PR
+      pull-requests: write   # для створення PR
+    env:
+      PYTHONUNBUFFERED: '1'
+      # GITHUB_TOKEN вже доступний автоматично; якщо колись треба PAT (напр. крос-репо) —
+      # додай секрет PAT_TOKEN і використай його всередині скрипта як fallback.
     steps:
-      - name: 📦 Checkout Repository
+      - name: 📦 Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: 🐍 Set Up Python
-        uses: actions/setup-python@v4
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-      - name: 📥 Install Dependencies
-        run: pip install requests
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: 📥 Install deps
+        run: |
+          python -m pip install -U pip
+          python -m pip install requests
+
       - name: 📡 Run Theme Sync Script
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}  # 🗝️ Your personal access token
+          GITHUB_TOKEN: ${{ github.token }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}   # опційно; якщо не заданий — скрипт просто ігнорує
         run: python update_themes.py
-      - name: 💾 Check for README changes
-        id: check_changes
-        run: |
-          if git diff --name-only | grep -q "README.md"; then
-            echo "changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "changes=false" >> $GITHUB_OUTPUT
-          fi
-      - name: 🔄 Commit & Push Changes
-        if: steps.check_changes.outputs.changes == 'true'
-        run: |
-          git config --global user.name 'Theme Sync Bot 🤖'
-          git config --global user.email 'themes-bot@flowlauncher.dev'
-         
-          # Stage README changes first
-          git add README.md
-          git commit -m "🧵 Auto-update README with new themes ✨"
-         
-          # Create a temporary branch for our changes
-          git branch temp-changes
-         
-          # Switch to master and pull latest changes
-          git checkout master
-          git pull origin master
-         
-          # Apply our changes on top of the latest master
-          git checkout temp-changes
-          git rebase master
-         
-          # Push the changes back to master
-          git checkout master
-          git merge --ff-only temp-changes
-          git push origin master
+
+      # Створюємо PR лише якщо є реальні зміни — action сам це визначить
+      - name: 📬 Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          # Якщо дуже треба PAT: розкоментуй наступний рядок
+          # token: ${{ secrets.PAT_TOKEN }}
+          commit-message: "🧵 Auto-update themes & README ✨"
+          title: "chore(theme-sync): weekly auto-update"
+          body: |
+            Automated weekly sync.
+            - Event: ${{ github.event_name }}
+            - Run: ${{ github.run_id }}
+          branch: chore/theme-sync
+          branch-suffix: timestamp
+          delete-branch: true
+          signoff: true
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          labels: |
+            chore
+            automated
