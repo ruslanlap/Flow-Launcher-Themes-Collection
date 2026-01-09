@@ -1,14 +1,14 @@
 name: 🧠 Weekly Flow Launcher Theme Sync
 
-on:
+on: 
   schedule:
-    - cron: '0 0 * * 0'  # 00:00 UTC щонеділі (03:00 за Києвом під час EEST)
+    - cron: '0 0 1,15 * *'  # 00:00 UTC 1-го та 15-го числа к��жного місяця (приблизно кожні 2 тижні)
   workflow_dispatch:
-  push:
+  push: 
     branches: [master]
 
 # Не запускай паралельні синки
-concurrency:
+concurrency: 
   group: theme-sync-${{ github.ref }}
   cancel-in-progress: true
 
@@ -24,18 +24,18 @@ jobs:
     permissions:
       contents: write        # для commit у гілку PR
       pull-requests: write   # для створення PR
-    env:
+    env: 
       PYTHONUNBUFFERED: '1'
       # GITHUB_TOKEN вже доступний автоматично; якщо колись треба PAT (напр. крос-репо) —
       # додай секрет PAT_TOKEN і використай його всередині скрипта як fallback.
     steps:
       - name: 📦 Checkout
         uses: actions/checkout@v4
-        with:
+        with: 
           fetch-depth: 0
 
       - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
+        uses:  actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: 'pip'
@@ -53,10 +53,10 @@ jobs:
 
       # Створюємо PR лише якщо є реальні зміни — action сам це визначить
       - name: 📬 Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
+        uses:  peter-evans/create-pull-request@v6
+        with: 
           # Якщо дуже треба PAT: розкоментуй наступний рядок
-          # token: ${{ secrets.PAT_TOKEN }}
+          # token:  ${{ secrets.PAT_TOKEN }}
           commit-message: "🧵 Auto-update themes & README ✨"
           title: "chore(theme-sync): weekly auto-update"
           body: |
@@ -67,8 +67,8 @@ jobs:
           branch-suffix: timestamp
           delete-branch: true
           signoff: true
-          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer:  github-actions[bot] <41898282+github-actions[bot]@users.noreply. github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply. github.com>
           labels: |
             chore
             automated
