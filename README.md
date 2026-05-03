@@ -2,7 +2,7 @@
 
 This README aggregates theme submissions shared in the [Flow Launcher Theme Gallery discussion](https://github.com/Flow-Launcher/Flow.Launcher/discussions/1438).
 
-📦 **Total Themes:** 46
+📦 **Total Themes:** 47
 
 | 🔢 # | 🎨 Theme | 🗂 XAML File(s) | 📥 Download | ✍️ Author | 🖼️ Preview |
 |-----:|----------|------------------|-------------|-----------|-----------|
@@ -44,14 +44,15 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | 36 | **Tokyo Night & Tokyo Night Storm** | Tokyo Night & Tokyo Night Storm.xaml | [Download](https://github.com/SoraTenshi/FlowLauncher-TokyoNight) | SoraTenshi | ✅ |
 | 37 | **VeryBlack (Windows Colors)** | VeryBlack (Windows Colors).xaml | [Download](https://github.com/DebugBoard/BloodMoon) | DebugBoard | ✅ |
 | 38 | **Violet is a theme for Flow Launcher.** | Violet.xaml | [Download](https://github.com/eliaszon/Violet.flow) | eliaszon | ✅ |
-| 39 | **☁️ Fluent Blur** | ☁️ Fluent Blur.xaml | [Download](https://github.com/Arcticn/FluentBlur.flow) | Arcticn | ✅ |
-| 40 | **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | %7Btheme%7D.xaml | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✅ |
-| 41 | **🎨 Alfred Blue** | 🎨 Alfred Blue.xaml | [Download](https://github.com/Qulierm/AlfredBlue) | Qulierm | ✅ |
-| 42 | **🎨 Cyan & Jurassic Themes** | Cyan.xaml, Jurassic.xaml | [Download](https://raw.githubusercontent.com/ruslanlap/RetroWaveTheme.FlowLa/master/Cyan.xaml) | ruslanlap | ✅ |
-| 43 | **🎨 Gold Box Flow.Laucher Theme** | Gold%20Box.xaml | [Download](https://github.com/Flow-Launcher/Flow.Launcher) | indigofairyx | ✅ |
-| 44 | **🎨 Palenight Theme / RetroWave Theme / TrueDracula** | Palenight.xaml, RetroWave.xaml, RetroWave1984.xaml, TrueDracula.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✅ |
-| 45 | **🎨Dracula True Theme** | DraculaTrue.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✅ |
-| 46 | **🟢 Updated to support Flow Launcher v1.20.0** | CircleDarkBlur.xaml | [Download](https://raw.githubusercontent.com/z1nc0r3/CircleDarkBlur.Flow-Launcher/main/CircleDarkBlur.xaml) | z1nc0r3 | ✅ |
+| 39 | **Zen Blue Theme │ Flow Launcher theme** | Blue%20Zen.xaml | [Download](https://raw.githubusercontent.com/Zenord-Dev/Zen-Blue-Theme-Flow-Launcher/refs/heads/main/Blue%20Zen.xaml) | Zenord-Dev | ✅ |
+| 40 | **☁️ Fluent Blur** | ☁️ Fluent Blur.xaml | [Download](https://github.com/Arcticn/FluentBlur.flow) | Arcticn | ✅ |
+| 41 | **✨ How to Submit Your Theme to the Flow Launcher Theme Collection** | %7Btheme%7D.xaml | [Download](https://github.com/ruslanlap/Flow-Launcher-Themes-Collection?tab=readme-ov-file) | ruslanlap | ✅ |
+| 42 | **🎨 Alfred Blue** | 🎨 Alfred Blue.xaml | [Download](https://github.com/Qulierm/AlfredBlue) | Qulierm | ✅ |
+| 43 | **🎨 Cyan & Jurassic Themes** | Cyan.xaml, Jurassic.xaml | [Download](https://raw.githubusercontent.com/ruslanlap/RetroWaveTheme.FlowLa/master/Cyan.xaml) | ruslanlap | ✅ |
+| 44 | **🎨 Gold Box Flow.Laucher Theme** | Gold%20Box.xaml | [Download](https://github.com/Flow-Launcher/Flow.Launcher) | indigofairyx | ✅ |
+| 45 | **🎨 Palenight Theme / RetroWave Theme / TrueDracula** | Palenight.xaml, RetroWave.xaml, RetroWave1984.xaml, TrueDracula.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✅ |
+| 46 | **🎨Dracula True Theme** | DraculaTrue.xaml | [Download](https://github.com/ruslanlap/RetroWaveTheme.FlowLa) | ruslanlap | ✅ |
+| 47 | **🟢 Updated to support Flow Launcher v1.20.0** | CircleDarkBlur.xaml | [Download](https://raw.githubusercontent.com/z1nc0r3/CircleDarkBlur.Flow-Launcher/main/CircleDarkBlur.xaml) | z1nc0r3 | ✅ |
 
 ---
 
