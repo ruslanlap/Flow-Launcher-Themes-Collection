@@ -51,12 +51,11 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}   # опційно; якщо не заданий — скрипт просто ігнорує
         run: python update_themes.py
 
-      # Створюємо PR лише якщо є реальні зміни — action сам це визначить
+      # Створюємо PR з фіксованою гілкою — peter-evans оновить існуючий PR замість створення нового
       - name: 📬 Create Pull Request
+        id: cpr
         uses:  peter-evans/create-pull-request@v6
         with: 
-          # Якщо дуже треба PAT: розкоментуй наступний рядок
-          # token:  ${{ secrets.PAT_TOKEN }}
           commit-message: "🧵 Auto-update themes & README ✨"
           title: "chore(theme-sync): weekly auto-update"
           body: |
@@ -64,11 +63,18 @@ jobs:
             - Event: ${{ github.event_name }}
             - Run: ${{ github.run_id }}
           branch: chore/theme-sync
-          branch-suffix: timestamp
           delete-branch: true
           signoff: true
-          committer:  github-actions[bot] <41898282+github-actions[bot]@users.noreply. github.com>
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply. github.com>
           labels: |
             chore
             automated
+
+      # Автоматично мержимо PR якщо він створений/оновлений і немає конфліктів
+      - name: ✅ Auto-merge Pull Request
+        if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_NUMBER="${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Auto-merging PR #$PR_NUMBER..."
+          gh pr merge "$PR_NUMBER" --squash --auto --delete-branch || echo "Auto-merge enabled (will merge when checks pass)"
