@@ -54,7 +54,7 @@ jobs:
       # Створюємо PR з фіксованою гілкою — peter-evans оновить існуючий PR замість створення нового
       - name: 📬 Create Pull Request
         id: cpr
-        uses:  peter-evans/create-pull-request@v6
+        uses:  peter-evans/create-pull-request@v8
         with: 
           commit-message: "🧵 Auto-update themes & README ✨"
           title: "chore(theme-sync): weekly auto-update"
