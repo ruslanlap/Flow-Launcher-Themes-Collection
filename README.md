@@ -32,7 +32,7 @@ This README aggregates theme submissions shared in the [Flow Launcher Theme Gall
 | 24 | **macOS Clean is a theme for Flow Launcher created to minic macOS Ventura Spotlight Search.** | macOSClean-Light.xaml, macOSClean.xaml | [Download](https://raw.githubusercontent.com/GalaxyNZ/macOSClean.flow/main/macOSClean.xaml) | GalaxyNZ | ✅ |
 | 25 | **Minic macOS Ventura Spotlight Search.** | macOS-Light.xaml, macOS.xaml | [Download](https://github.com/abhidahal/onsetGlaze.flow) | cc46808 | ✅ |
 | 26 | **Minimal theme that get things done. With flavours.** | Minimal theme that get things done. With flavours..xaml | [Download](https://github.com/Fuzzycc/FlowLauncher) | Fuzzycc | ✅ |
-| 27 | **Mojito Pro** | Mojito Pro.xaml | [Download](https://github.com/mishatoshi/mojito-pro-flowlauncher-theme) | mishatoshi | ✅ |
+| 27 | **Mojito Pro** | Mojito Pro.xaml | [Download](https://github.com/mishatoshi/mojito-pro-flowlauncher-theme) | Unknown | ✅ |
 | 28 | **My small changes to the onsetGlaze including dynamic light/dark theme** | My small changes to the onsetGlaze including dynamic light/dark theme.xaml | [Download](https://github.com/abhidahal/onsetGlaze.flow) | R0gue301 | ✅ |
 | 29 | **Non-transparent and very minimal theme** | Non-transparent and very minimal theme.xaml | [Download](https://github.com/calamina/flow) | calamina | ✅ |
 | 30 | **Official release of Darcubox Flow Launcher theme!! based on darcubox-nvim palette.** | DarcuboxBlur.xaml | [Download](https://github.com/Koalhack/darcubox-nvim) | Koalhack | ✅ |
